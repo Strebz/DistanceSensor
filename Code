@@ -1,0 +1,46 @@
+#define trigPin 7// Initialize the Trigger pin for sensor
+#define echoPin 6 // Initialize the Echo pin for sensor
+#define led 5 //Initialize pin for LED
+long duration, cm;
+
+//int duration;
+void setup(){
+Serial.begin (9600); //initialize the Serial communication
+//pinMode(trig, OUTPUT);//giving the pin mode to  Trigger pin as output
+//pinMode(echo, INPUT);//giving the pin mode to Echo pin as input
+pinMode(led, OUTPUT); //giving the pin mode to LED pin as output
+pinMode(trigPin, OUTPUT);
+pinMode(echoPin, INPUT);
+}
+void loop()
+{
+  
+  //long time, dist; /* variable for strong the distance and time  value*/
+
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(5);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  pinMode(echoPin, INPUT);
+  duration = pulseIn(echoPin, HIGH);
+
+  cm = (duration/2) /29.1;
+
+  if (cm <= 10) // if distance is less than 10 cm turn on the LED
+  {
+   //Serial.println(dist);
+    //Serial.println(time);
+    Serial.print(cm);//displaying the distance value on serial port
+    digitalWrite(led, HIGH);// giving the LED a HIGH state
+    Serial.println("cm : LED is on state  ");
+    delay(700);
+  }
+  else { // else keep the LED in the LOW state
+    Serial.print(cm);//displaying the distance value on serial port
+    digitalWrite(led, LOW);// giving the LED a LOW state
+    Serial.println(" cm : LED is off state  ");
+    delay(700);
+  }
+}
