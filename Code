@@ -35,12 +35,12 @@ void loop()
     Serial.print(cm);//displaying the distance value on serial port
     digitalWrite(led, HIGH);// giving the LED a HIGH state
     Serial.println("cm : LED is on state  ");
-    delay(700);
+    delay(1);
   }
   else { // else keep the LED in the LOW state
     Serial.print(cm);//displaying the distance value on serial port
     digitalWrite(led, LOW);// giving the LED a LOW state
     Serial.println(" cm : LED is off state  ");
-    delay(700);
+    delay(1);
   }
 }
